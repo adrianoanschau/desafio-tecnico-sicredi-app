@@ -1,18 +1,46 @@
+@import "~bulma/sass/utilities/all";
+
 :host {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  #new-schedule-form {
-    &.box {
-      width: 80%;
-      min-width: 300px;
-    }
-  }
-  #schedules-list {
+  .show-list {
+    position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 360px;
     .box {
-      width: 250px;
+      position: absolute;
+      transform: scale(0.8);
+      margin: .5rem;
+      width: 220px;
+      height: 220px;
+      &.is-active {
+        transform: scale(1.2);
+        z-index: 1;
+      }
     }
   }
+  button.button {
+    &.prev, &.next {
+      position: absolute;
+      z-index: 2;
+      top: 75%;
+      border: none;
+      background-color: rgba($dark, 0.4);
+      color: $white-bis;
+      &:hover {
+        background-color: rgba($dark, 0.8);
+      }
+    }
+    &.prev {
+      left: calc(50% - 155px);
+    }
+    &.next {
+      left: calc(50% + 120px);
+    }
+    &.is-disabled {
+      opacity: 0.2;
+    }
+  }
+
 }

@@ -1,17 +1,25 @@
-<div id="new-schedule-form" class="box" *ngIf="schedules.length === 0">
-  <p class="title has-text-grey-light">Cadastre a primeira Pauta</p>
-  <div class="field">
-    <input type="text" class="input" placeholder="Título" id="title" name="title">
-  </div>
-  <div class="field">
-    <textarea class="textarea" name="description" id="description" cols="30" rows="10" placeholder="Descrição"></textarea>
-  </div>
-  <button class="button is-fullwidth is-primary">Salvar</button>
-</div>
+<app-schedule-form [showForm]="schedules.length === 0"></app-schedule-form>
 
-<div id="schedules-list" class="container is-fluid" *ngIf="!!schedules.length">
-  <div class="box has-text-centered" *ngFor="let schedule of schedules">
+<div class="show-list" *ngIf="schedules.length > 0">
+  <div class="box has-text-centered" *ngFor="let schedule of schedules; let i = index"
+       [class.is-active]="i === current"
+       [style.left]="'calc(50% - '+ calcLeft(i) +'px)'"
+  >
     <p class="title has-text-grey">{{ schedule.title }}</p>
     <p>{{ schedule.description }}</p>
   </div>
+  <button class="button prev" (click)="prev()"
+          [class.is-disabled]="current === 0"
+  >
+    <span class="icon is-small">
+      <fa-icon icon="chevron-left"></fa-icon>
+    </span>
+  </button>
+  <button class="button next" (click)="next()"
+          [class.is-disabled]="current === schedules.length - 1"
+  >
+    <span class="icon is-small">
+      <fa-icon icon="chevron-right"></fa-icon>
+    </span>
+  </button>
 </div>

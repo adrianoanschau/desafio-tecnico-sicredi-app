@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .box {
+    width: 80%;
+    min-width: 300px;
+  }
+}
