@@ -6,4 +6,7 @@
     width: 80%;
     min-width: 300px;
   }
+  button.is-disabled {
+    opacity: 0.4;
+  }
 }

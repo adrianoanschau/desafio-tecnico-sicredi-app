@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {ScheduleService} from '../services/schedule/schedule.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchedulesListResolver implements Resolve<any> {
 
-  constructor(private http: HttpClient) { }
+  constructor(private scheduleService: ScheduleService) { }
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.http.get('schedules');
+    return this.scheduleService.getSchedules();
   }
 }

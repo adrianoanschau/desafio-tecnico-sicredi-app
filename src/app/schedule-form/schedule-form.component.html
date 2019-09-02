@@ -1,10 +1,19 @@
 <div class="box" *ngIf="showForm">
   <p class="title has-text-grey-light">Cadastre a primeira Pauta</p>
-  <div class="field">
-    <input type="text" class="input" placeholder="Título" id="title" name="title">
-  </div>
-  <div class="field">
-    <textarea class="textarea" name="description" id="description" cols="30" rows="10" placeholder="Descrição"></textarea>
-  </div>
-  <button class="button is-fullwidth is-primary">Salvar</button>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <input type="text" class="input" placeholder="Título" id="title" name="title" formControlName="title"
+             [class.is-danger]="f.title.touched && f.title.errors.required"
+      >
+      <p class="help is-danger" *ngIf="f.title.touched && f.title.errors.required">
+        <span>Este campo é obrigatório</span>
+      </p>
+    </div>
+    <div class="field">
+      <textarea class="textarea" name="description" id="description" cols="30" rows="10" placeholder="Descrição" formControlName="description"></textarea>
+    </div>
+    <button type="submit" class="button is-fullwidth is-primary"
+            [class.is-disabled]="formGroup.invalid"
+    >Salvar</button>
+  </form>
 </div>

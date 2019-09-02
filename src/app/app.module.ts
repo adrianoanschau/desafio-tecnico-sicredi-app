@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {HttpService} from './services/http.service';
+import {HttpService} from './services/http/http.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { SchedulesListComponent } from './schedules-list/schedules-list.component';
 import { ScheduleFormComponent } from './schedule-form/schedule-form.component';
