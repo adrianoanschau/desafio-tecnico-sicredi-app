@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SchedulesListComponent } from './schedules-list.component';
-import {AppComponent} from '../app.component';
 
 describe('SchedulesListComponent', () => {
   let component: SchedulesListComponent;
@@ -22,11 +21,5 @@ describe('SchedulesListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should render title form in a p tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('p.title').textContent).toEqual('Cadastre a primeira Pauta');
   });
 });

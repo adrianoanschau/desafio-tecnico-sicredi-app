@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-schedules-list',
@@ -8,12 +7,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SchedulesListComponent implements OnInit {
 
-  schedules: any[] = this.route.snapshot.data.schedules;
-
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log({ s: this.schedules });
   }
 
 }

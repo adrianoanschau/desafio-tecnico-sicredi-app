@@ -3,16 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SchedulesListComponent } from './home/schedules-list.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {HttpService} from './services/http.service';
 import {ReactiveFormsModule} from '@angular/forms';
-import {AssociatesListResolver} from './resolvers/associates-list.resolver';
+import { SchedulesListComponent } from './schedules-list/schedules-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SchedulesListComponent
+    SchedulesListComponent,
   ],
   imports: [
     BrowserModule,
