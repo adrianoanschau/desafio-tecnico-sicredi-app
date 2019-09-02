@@ -25,7 +25,6 @@ import {AssociatesListResolver} from './resolvers/associates-list.resolver';
       provide: HttpClient,
       useClass: HttpService,
     },
-    AssociatesListResolver,
   ],
   bootstrap: [AppComponent]
 })
