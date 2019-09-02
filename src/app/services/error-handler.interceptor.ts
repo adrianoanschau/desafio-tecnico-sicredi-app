@@ -9,12 +9,12 @@ import {catchError} from 'rxjs/operators';
 })
 export class ErrorHandlerInterceptor implements HttpInterceptor {
 
-  private static errorHandler(response: HttpEvent<any>): Observable<HttpEvent<any>> {
-    if (!environment.production) {}
-    throw response;
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(req).pipe(catchError(error => this.errorHandler(error)));
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(error => ErrorHandlerInterceptor.errorHandler(error)));
+  private errorHandler(response: HttpEvent<any>): Observable<HttpEvent<any>> {
+    if (!environment.production) {}
+    throw response;
   }
 }
