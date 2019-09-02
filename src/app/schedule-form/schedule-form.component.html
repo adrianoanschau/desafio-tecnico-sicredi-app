@@ -1,5 +1,8 @@
 <div class="box" *ngIf="showForm">
-  <p class="title has-text-grey-light">Cadastre a primeira Pauta</p>
+  <p class="title has-text-grey-light">
+    <span>Cadastre a primeira Pauta</span>
+    <button class="delete is-pulled-right" (click)="showForm = false"></button>
+  </p>
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <div class="field">
       <input type="text" class="input" placeholder="Título" id="title" name="title" formControlName="title"
@@ -17,3 +20,9 @@
     >Salvar</button>
   </form>
 </div>
+
+<button class="button is-large new-schedule is-white has-text-grey" *ngIf="!showForm" title="Cadastrar nova Pauta" (click)="showForm = true">
+  <span class="icon is-large">
+    <fa-icon icon="plus"></fa-icon>
+  </span>
+</button>

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Schedule} from '../models/Schedule';
 import {ScheduleService} from '../services/schedule/schedule.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-schedule-form',
@@ -36,11 +36,11 @@ export class ScheduleFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.formGroup.invalid) {
       return;
     }
-    this.scheduleService.storeSchedule(this.formGroup.value);
-    this.formGroup.reset(new Schedule());
+    await this.scheduleService.storeSchedule(this.formGroup.value).toPromise();
+    window.location.reload();
   }
 }

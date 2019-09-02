@@ -17,6 +17,9 @@ export class ScheduleService {
   }
 
   storeSchedule(schedule: Schedule): Observable<Schedule> {
+    if (!schedule.description) {
+      delete schedule.description;
+    }
     return this.http.post<Schedule>(ScheduleService.API, schedule);
   }
 }

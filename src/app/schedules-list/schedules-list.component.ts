@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-schedules-list',
@@ -12,9 +12,15 @@ export class SchedulesListComponent implements OnInit {
 
   current = 0;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.router.events.subscribe(data => {
+      console.log('events', { data });
+    });
   }
 
   calcLeft(i: number) {
