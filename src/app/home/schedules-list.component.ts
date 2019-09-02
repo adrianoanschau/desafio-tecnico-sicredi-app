@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-schedules-list',
+  templateUrl: './schedules-list.component.html',
+  styleUrls: ['./schedules-list.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class SchedulesListComponent implements OnInit {
 
   schedules: any[] = this.route.snapshot.data.schedules;
 
