@@ -1,4 +1,4 @@
-<div class="box">
+<div id="new-schedule-form" class="box" *ngIf="schedules.length === 0">
   <p class="title has-text-grey-light">Cadastre a primeira Pauta</p>
   <div class="field">
     <input type="text" class="input" placeholder="Título" id="title" name="title">
@@ -7,4 +7,11 @@
     <textarea class="textarea" name="description" id="description" cols="30" rows="10" placeholder="Descrição"></textarea>
   </div>
   <button class="button is-fullwidth is-primary">Salvar</button>
+</div>
+
+<div id="schedules-list" class="container is-fluid" *ngIf="!!schedules.length">
+  <div class="box has-text-centered" *ngFor="let schedule of schedules">
+    <p class="title has-text-grey">{{ schedule.title }}</p>
+    <p>{{ schedule.description }}</p>
+  </div>
 </div>
