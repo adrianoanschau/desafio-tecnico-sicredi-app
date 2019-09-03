@@ -4,13 +4,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-schedules-list',
   templateUrl: './schedules-list.component.html',
-  styleUrls: ['./schedules-list.component.scss']
+  styleUrls: ['./schedules-list.component.scss'],
 })
 export class SchedulesListComponent implements OnInit {
 
   schedules: any[] = this.route.snapshot.data.schedules;
-
   current = 0;
+  carouselLeftOffset = 45;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,26 +23,21 @@ export class SchedulesListComponent implements OnInit {
     });
   }
 
-  calcLeft(i: number) {
-    if (i === this.current) {
-      return 118;
-    }
-    const offset = i - this.current - 1;
-    if (i > this.current) {
-      return 118 - (offset * 250) - 310;
-    }
-    return 118 - (offset * 250) - 190;
+  updateCarouselOffset() {
+    this.carouselLeftOffset = 45 + (90 * this.current);
   }
 
   next() {
     if (this.current < this.schedules.length - 1) {
       this.current += 1;
+      this.updateCarouselOffset();
     }
   }
 
   prev() {
     if (this.current > 0) {
       this.current -= 1;
+      this.updateCarouselOffset();
     }
   }
 }

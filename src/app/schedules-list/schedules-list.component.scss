@@ -3,43 +3,36 @@
 :host {
   width: 100%;
   .show-list {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 360px;
-    .box {
+    ul.carousel {
       position: absolute;
-      transform: scale(0.8);
-      margin: .5rem;
-      width: 220px;
-      height: 220px;
-      &.is-active {
-        transform: scale(1.2);
-        z-index: 1;
+      top: 0;
+      left: 50%;
+      display: flex;
+      width: 100%;
+      transition: left 300ms ease;
+      li {
+        width: 90vw;
+        height: 60vh;
+        margin: 0.5rem;
+        transition: transform 300ms ease;
+        transform: scaleY(0.9);
+        &.is-active {
+          transform: scaleY(1.1);
+        }
       }
     }
-  }
-  button.button {
-    &.prev, &.next {
+    button.button {
       position: absolute;
-      z-index: 2;
-      top: 75%;
-      border: none;
+      top: 15px;
       background-color: rgba($dark, 0.4);
-      color: $white-bis;
-      &:hover {
-        background-color: rgba($dark, 0.8);
+      color: white;
+      border: none;
+      &.prev {
+        left: -3px;
       }
-    }
-    &.prev {
-      left: calc(50% - 155px);
-    }
-    &.next {
-      left: calc(50% + 120px);
-    }
-    &.is-disabled {
-      opacity: 0.2;
+      &.next {
+        right: -3px;
+      }
     }
   }
 

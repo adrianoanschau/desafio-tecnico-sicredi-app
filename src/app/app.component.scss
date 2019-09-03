@@ -1,9 +1,15 @@
 :host {
-  .hero-head {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-  }
-  .hero-body {
-    padding: 0;
+  .hero {
+    min-height: 100%;
+    .hero-head {
+      padding: 1rem 0;
+      @media (min-width: 768px) {
+        padding: 4rem 0;
+      }
+    }
+    .hero-body {
+      position: relative;
+      padding: 0;
+    }
   }
 }

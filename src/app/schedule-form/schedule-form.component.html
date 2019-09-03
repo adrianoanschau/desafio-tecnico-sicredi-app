@@ -1,9 +1,9 @@
-<div class="box" *ngIf="showForm">
-  <p class="title has-text-grey-light">
-    <span>Cadastre a primeira Pauta</span>
-    <button class="delete is-pulled-right" (click)="showForm = false"></button>
-  </p>
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<div class="box" [@formState]="formState">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+    <p class="title has-text-grey-light">
+      <span>Cadastre a primeira Pauta</span>
+      <button class="delete is-pulled-right" (click)="showForm = !showForm"></button>
+    </p>
     <div class="field">
       <input type="text" class="input" placeholder="Título" id="title" name="title" formControlName="title"
              [class.is-danger]="f.title.touched && f.title.errors.required"
@@ -13,7 +13,7 @@
       </p>
     </div>
     <div class="field">
-      <textarea class="textarea" name="description" id="description" cols="30" rows="10" placeholder="Descrição" formControlName="description"></textarea>
+      <textarea class="textarea" name="description" id="description" cols="30" rows="5" placeholder="Descrição" formControlName="description"></textarea>
     </div>
     <button type="submit" class="button is-fullwidth is-primary"
             [class.is-disabled]="formGroup.invalid"
@@ -21,8 +21,9 @@
   </form>
 </div>
 
-<button class="button is-large new-schedule is-white has-text-grey" *ngIf="!showForm" title="Cadastrar nova Pauta" (click)="showForm = true">
+<button class="button fab-button is-large new-schedule is-danger" title="Cadastrar nova Pauta" (click)="showForm = !showForm">
   <span class="icon is-large">
-    <fa-icon icon="plus"></fa-icon>
+    <fa-icon icon="plus" *ngIf="!showForm"></fa-icon>
+    <fa-icon icon="minus" *ngIf="showForm"></fa-icon>
   </span>
 </button>

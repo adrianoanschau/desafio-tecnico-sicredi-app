@@ -1,13 +1,18 @@
 <app-schedule-form [showForm]="schedules.length === 0"></app-schedule-form>
 
 <div class="show-list" *ngIf="schedules.length > 0">
-  <div class="box has-text-centered" *ngFor="let schedule of schedules; let i = index"
-       [class.is-active]="i === current"
-       [style.left]="'calc(50% - '+ calcLeft(i) +'px)'"
+  <ul class="carousel"
+      [style.width]="(schedules.length * 90) + 'vw'"
+      [style.left]="'calc(50% - '+ carouselLeftOffset +'vw)'"
   >
-    <p class="title has-text-grey">{{ schedule.title }}</p>
-    <p>{{ schedule.description }}</p>
-  </div>
+    <li class="box has-text-centered"
+        *ngFor="let schedule of schedules; let i = index"
+        [class.is-active]="i === current"
+    >
+      <p class="title has-text-grey">{{ schedule.title }}</p>
+      <p>{{ schedule.description }}</p>
+    </li>
+  </ul>
   <button class="button prev" (click)="prev()"
           [class.is-disabled]="current === 0"
   >
