@@ -20,18 +20,29 @@
           transform: scaleY(1.1);
         }
       }
+      button.is-disabled {
+        opacity: 0.5;
+      }
     }
-    button.button {
+    button.button.prev,
+    button.button.next {
       position: absolute;
       top: 15px;
-      background-color: rgba($dark, 0.4);
+      background-color: $dark;
+      opacity: 0.4;
       color: white;
       border: none;
+      &:hover {
+        opacity: 0.8;
+      }
       &.prev {
         left: -3px;
       }
       &.next {
         right: -3px;
+      }
+      &.is-disabled {
+        opacity: 0.2;
       }
     }
   }

@@ -9,8 +9,46 @@
         *ngFor="let schedule of schedules; let i = index"
         [class.is-active]="i === current"
     >
-      <p class="title has-text-grey">{{ schedule.title }}</p>
+      <p class="has-text-grey" style="font-size: 1.4rem;">{{ schedule.title }}</p>
       <p>{{ schedule.description }}</p>
+      <br>
+
+      <button class="button is-info"
+              *ngIf="!schedule.session_opened && !setSessionTime[schedule.id]"
+              (click)="setSessionTime[schedule.id] = true"
+      >
+        Abrir Sessão de Votação
+      </button>
+      <div class="field" *ngIf="setSessionTime[schedule.id]">
+        <label class="has-text-grey">Duração (segundos)</label>
+        <div class="field is-grouped">
+          <input type="text" class="input" autofocus value="60" #time>
+          <button class="button is-info"
+                  (click)="openSession(schedule.id, time.value)"
+          >OK</button>
+        </div>
+      </div>
+
+      <div class="field" *ngIf="!!schedule.session_opened">
+        <form [formGroup]="voteForm">
+          <label>Votar</label>
+          <div class="field">
+            <input type="text" class="input" placeholder="Nome" formControlName="name">
+          </div>
+          <div class="field">
+            <input type="text" class="input" placeholder="CPF" formControlName="document">
+          </div>
+          <div class="field is-grouped">
+            <button type="submit" class="button is-link is-fullwidth" (click)="voteYes(schedule.id)"
+                    [class.is-disabled]="voteForm.invalid"
+            >Sim</button>
+            <button type="submit" class="button is-warning is-fullwidth" (click)="voteNo(schedule.id)"
+                    [class.is-disabled]="voteForm.invalid"
+            >Não</button>
+          </div>
+        </form>
+      </div>
+
     </li>
   </ul>
   <button class="button prev" (click)="prev()"

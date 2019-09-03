@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Schedule} from '../models/Schedule';
+import {Schedule} from '../models/schedule';
 import {ScheduleService} from '../services/schedule/schedule.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
