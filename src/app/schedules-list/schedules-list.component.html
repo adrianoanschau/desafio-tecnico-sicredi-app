@@ -14,7 +14,7 @@
       <br>
 
       <button class="button is-info"
-              *ngIf="!schedule.session_opened && !setSessionTime[schedule.id]"
+              *ngIf="!schedule.session_opened && schedule.sessions.length === 0 && !setSessionTime[schedule.id]"
               (click)="setSessionTime[schedule.id] = true"
       >
         Abrir Sessão de Votação
@@ -47,6 +47,23 @@
             >Não</button>
           </div>
         </form>
+      </div>
+
+      <div class="field" *ngIf="!schedule.session_opened && schedule.sessions.length > 0">
+        <button class="button is-info"
+                *ngIf="!results[schedule.id]"
+                (click)="showResult(schedule.id)">Exibir Resultado</button>
+        <div class="buttons" *ngIf="results[schedule.id]">
+          <button class="button is-fullwidth">
+            Sim: {{ results[schedule.id].Y }}
+          </button>
+          <button class="button is-fullwidth">
+            Não: {{ results[schedule.id].N }}
+          </button>
+          <button class="button is-fullwidth is-link">
+            Total: {{ results[schedule.id].total }}
+          </button>
+        </div>
       </div>
 
     </li>

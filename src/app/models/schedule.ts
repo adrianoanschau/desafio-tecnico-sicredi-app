@@ -5,4 +5,5 @@ export class Schedule {
   title: string;
   description: string;
   session_opened: ScheduleSession;
+  sessions: ScheduleSession[];
 }

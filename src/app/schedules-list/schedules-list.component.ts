@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Schedule} from '../models/schedule';
 import {ScheduleService} from '../services/schedule/schedule.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ResultService, ResultType} from '../services/result/result.service';
 
 @Component({
   selector: 'app-schedules-list',
@@ -17,17 +18,27 @@ export class SchedulesListComponent implements OnInit {
   setSessionTime: boolean[] = [];
   voteForm: FormGroup;
   cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-' , /\d/, /\d/];
+  results: ResultType[] = [];
 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private scheduleService: ScheduleService,
+    private resultService: ResultService,
     private formBuilder: FormBuilder
   ) { }
 
   get f() {
     return this.voteForm.controls;
+  }
+
+  getResult(id: number) {
+    return this.resultService.getResult(id).toPromise();
+  }
+
+  async showResult(id: number) {
+    this.results[id] = await this.getResult(id);
   }
 
   ngOnInit() {
