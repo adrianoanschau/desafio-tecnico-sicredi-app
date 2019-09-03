@@ -36,13 +36,13 @@
             <input type="text" class="input" placeholder="Nome" formControlName="name">
           </div>
           <div class="field">
-            <input type="text" class="input" placeholder="CPF" formControlName="document">
+            <input type="text" class="input is-danger" placeholder="CPF (obrigatório)" formControlName="document" [textMask]="{mask: cpfMask}">
           </div>
           <div class="field is-grouped">
-            <button type="submit" class="button is-link is-fullwidth" (click)="voteYes(schedule.id)"
+            <button type="submit" class="button is-link is-fullwidth" (click)="vote('Y', schedule.id)"
                     [class.is-disabled]="voteForm.invalid"
             >Sim</button>
-            <button type="submit" class="button is-warning is-fullwidth" (click)="voteNo(schedule.id)"
+            <button type="submit" class="button is-warning is-fullwidth" (click)="vote('N', schedule.id)"
                     [class.is-disabled]="voteForm.invalid"
             >Não</button>
           </div>

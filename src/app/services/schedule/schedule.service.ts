@@ -30,9 +30,9 @@ export class ScheduleService {
     });
   }
 
-  vote(scheduleId: number, option: 'Y'|'N', name: string, document: string) {
+  vote(scheduleId: number, option: 'Y'|'N', associate: {name?: string, document: string}) {
     return this.http.put<Schedule>(`${ScheduleService.API}/${scheduleId}/vote`, {
-      option, associate: { name, document }
+      option, associate,
     });
   }
 }

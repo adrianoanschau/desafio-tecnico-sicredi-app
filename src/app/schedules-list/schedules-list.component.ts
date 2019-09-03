@@ -16,6 +16,8 @@ export class SchedulesListComponent implements OnInit {
   carouselLeftOffset = 45;
   setSessionTime: boolean[] = [];
   voteForm: FormGroup;
+  cpfMask = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-' , /\d/, /\d/];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +25,10 @@ export class SchedulesListComponent implements OnInit {
     private scheduleService: ScheduleService,
     private formBuilder: FormBuilder
   ) { }
+
+  get f() {
+    return this.voteForm.controls;
+  }
 
   ngOnInit() {
     this.router.events.subscribe(data => {
@@ -68,21 +74,21 @@ export class SchedulesListComponent implements OnInit {
 
   private createVoteForm() {
     this.voteForm = this.formBuilder.group({
-      name: [null, Validators.required],
-      document: [null, [Validators.required, Validators.pattern(/\d{3}\.\d{3}\.\d{3}-\d{2}/g)]],
+      name: [null],
+      document: [null, [Validators.required, Validators.pattern(/\d{3}\.\d{3}\.\d{3}-\d{2}/)]],
     });
   }
 
-  voteYes(id: number) {
-    console.log(this.voteForm.value);
-    this.scheduleService.vote(id, 'Y', name, document)
-      .subscribe(data => {
-        console.log({data});
-      });
-  }
-
-  voteNo(id: number) {
-    this.scheduleService.vote(id, 'N', name, document)
+  vote(option: 'Y'|'N', id: number) {
+    if (this.voteForm.invalid) {
+      return;
+    }
+    const { name, document } = this.voteForm.value;
+    const associate: { name?: string, document: string } = { document: document.replace(/[^0-9]+/g, '') };
+    if (name) {
+      associate.name = name;
+    }
+    this.scheduleService.vote(id, option, associate)
       .subscribe(data => {
         console.log({data});
       });
